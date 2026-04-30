@@ -1,0 +1,36 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+:root {
+    --serif: "Inter", serif;
+    --monospace: "JetBrains Mono", monospace;
+    ---plot-bg-color: #b4b4b4;
+}
+
+label {
+    --label-width: 150px;
+}
+
+.result {
+    padding: 5px 10px;
+    background-color: rgba(0, 139, 139, 0.1);
+    border-left: 3px solid darkcyan;
+}
+
+.date {
+    font-weight: 600;
+    color: darkcyan;
+    padding-bottom: 1px;
+    border-bottom: 2px solid darkcyan;
+}
+
+figure {
+    background-color: rgba(180, 180, 180, 0.1);
+    background-color: rgb(from var(---plot-bg-color) r g b / 0.1);
+    border: 1px solid var(---plot-bg-color);
+    padding: 15px;
+    & h2 {
+        color: var(--theme-foreground-faint);
+    }
+}
