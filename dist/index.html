@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Home Loan Amortisation</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_import/styles.b8db8b8b.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_import/styles.b8db8b8b.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.d7471ee4.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.318537f4.js">
+<link rel="modulepreload" href="./_import/generateLoanData.9bd48efd.js">
+<link rel="modulepreload" href="./_import/plotOSLoan.29d6b19b.js">
+<link rel="modulepreload" href="./_import/plotIntAndPrincipal.1f7135fd.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.9a54a8af.js">
+<link rel="modulepreload" href="./_import/utils.4be4e577.js">
+<link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.3e99bd70.js">
+<link rel="modulepreload" href="./_node/d3@7.9.0/index.ca4e4e1f.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_node/isoformat@0.2.1/index.0882e9d9.js">
+<link rel="modulepreload" href="./_node/interval-tree-1d@1.0.4/index.eeaa354d.js">
+<link rel="modulepreload" href="./_node/d3-array@3.2.4/index.bdb0a72c.js">
+<link rel="modulepreload" href="./_node/d3-axis@3.0.0/index.34ded868.js">
+<link rel="modulepreload" href="./_node/d3-brush@3.0.0/index.2a46d490.js">
+<link rel="modulepreload" href="./_node/d3-chord@3.0.1/index.eb7a3f59.js">
+<link rel="modulepreload" href="./_node/d3-color@3.1.0/index.e8c126ff.js">
+<link rel="modulepreload" href="./_node/d3-contour@4.0.2/index.d20458c0.js">
+<link rel="modulepreload" href="./_node/d3-delaunay@6.0.4/index.d22bdd7b.js">
+<link rel="modulepreload" href="./_node/d3-dispatch@3.0.1/index.be49ca5f.js">
+<link rel="modulepreload" href="./_node/d3-drag@3.0.0/index.d3ae5f0f.js">
+<link rel="modulepreload" href="./_node/d3-dsv@3.0.1/index.48418e2e.js">
+<link rel="modulepreload" href="./_node/d3-ease@3.0.1/index.f721fe69.js">
+<link rel="modulepreload" href="./_node/d3-fetch@3.0.1/index.a14b8fa2.js">
+<link rel="modulepreload" href="./_node/d3-force@3.0.0/index.952bd793.js">
+<link rel="modulepreload" href="./_node/d3-format@3.1.2/index.462d0a06.js">
+<link rel="modulepreload" href="./_node/d3-geo@3.1.1/index.ed340730.js">
+<link rel="modulepreload" href="./_node/d3-hierarchy@3.1.2/index.aa2fa671.js">
+<link rel="modulepreload" href="./_node/d3-interpolate@3.0.1/index.e11d2315.js">
+<link rel="modulepreload" href="./_node/d3-path@3.1.0/index.c2b3c473.js">
+<link rel="modulepreload" href="./_node/d3-polygon@3.0.1/index.32c3d834.js">
+<link rel="modulepreload" href="./_node/d3-quadtree@3.0.1/index.e9fed2eb.js">
+<link rel="modulepreload" href="./_node/d3-random@3.0.1/index.0f51cac2.js">
+<link rel="modulepreload" href="./_node/d3-scale@4.0.2/index.d84d3d65.js">
+<link rel="modulepreload" href="./_node/d3-scale-chromatic@3.1.0/index.28c209c1.js">
+<link rel="modulepreload" href="./_node/d3-selection@3.0.0/index.13204b25.js">
+<link rel="modulepreload" href="./_node/d3-shape@3.2.0/index.d124f030.js">
+<link rel="modulepreload" href="./_node/d3-time@3.1.0/index.5e76e4f2.js">
+<link rel="modulepreload" href="./_node/d3-time-format@4.1.0/index.1cef6c56.js">
+<link rel="modulepreload" href="./_node/d3-timer@3.0.1/index.0ee6092b.js">
+<link rel="modulepreload" href="./_node/d3-transition@3.0.1/index.3725eff8.js">
+<link rel="modulepreload" href="./_node/d3-zoom@3.0.0/index.b6a6a5f8.js">
+<link rel="modulepreload" href="./_node/binary-search-bounds@2.0.5/index.990a1c6d.js">
+<link rel="modulepreload" href="./_node/internmap@2.0.3/index.4106013c.js">
+<link rel="modulepreload" href="./_node/delaunator@5.1.0/index.612904e6.js">
+<link rel="modulepreload" href="./_node/robust-predicates@3.0.3/index.a9a3e887.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.d7471ee4.js";
+
+define({id: "f357cf31", outputs: ["generateLoanData","plotOSLoan","plotIntAndPrincipal","html"], body: async () => {
+const [{generateLoanData}, {plotOSLoan}, {plotIntAndPrincipal}, {html}] = await Promise.all([import("./_import/generateLoanData.9bd48efd.js"), import("./_import/plotOSLoan.29d6b19b.js"), import("./_import/plotIntAndPrincipal.1f7135fd.js"), import("./_npm/htl@0.3.1/72f4716c.js")]);
+
+return {generateLoanData,plotOSLoan,plotIntAndPrincipal,html};
+}});
+
+define({id: "c52bc4bb", inputs: ["view","Inputs"], outputs: ["osLoanAmount"], body: (view,Inputs) => {
+const osLoanAmount = view(
+    Inputs.range([4_00_000, 10_30_000], {
+        label: "Current o/s loan amount",
+        value: 10_30_000,
+        step: 10_000,
+    }),
+);
+return {osLoanAmount};
+}});
+
+define({id: "a7512867", inputs: ["view","Inputs"], outputs: ["monthlyEMIAmount"], body: (view,Inputs) => {
+const monthlyEMIAmount = view(
+    Inputs.number({
+        label: "Monthly EMI amount",
+        value: 14_041,
+        disabled: true,
+    }),
+);
+return {monthlyEMIAmount};
+}});
+
+define({id: "7f735dca", inputs: ["view","Inputs"], outputs: ["interestRate"], body: (view,Inputs) => {
+const interestRate = view(
+    Inputs.range([0.08, 0.15], {
+        step: 0.001,
+        value: 0.091,
+        label: "Interest Rate",
+    }),
+);
+return {interestRate};
+}});
+
+define({id: "366f7438", inputs: ["view","Inputs"], outputs: ["repayLumpsum1"], body: (view,Inputs) => {
+const repayLumpsum1 = view(
+    Inputs.range([0, 5_00_000], { label: "1 year", step: 10_000, value: 0 }),
+);
+return {repayLumpsum1};
+}});
+
+define({id: "97adaf5f", inputs: ["view","Inputs"], outputs: ["repayLumpsum2"], body: (view,Inputs) => {
+const repayLumpsum2 = view(
+    Inputs.range([0, 5_00_000], { label: "2 years", step: 10_000, value: 0 }),
+);
+return {repayLumpsum2};
+}});
+
+define({id: "8b53af29", inputs: ["display","html","loanRepayYears","loanRepayMonths"], body: (display,html,loanRepayYears,loanRepayMonths) => {
+display(
+    html` <div class="result">
+        Loan expected to be repaid in
+        <span class="date">${loanRepayYears} years</span>
+        ${loanRepayMonths > 0
+            ? html` and
+                  <span class="date">${loanRepayMonths} months</span>`
+            : ""}
+    </div>`,
+);
+}});
+
+define({id: "ef84c339", inputs: ["generateLoanData","interestRate","repayLumpsum1","repayLumpsum2","osLoanAmount","monthlyEMIAmount"], outputs: ["loanData","loanRepayYears","loanRepayMonths"], body: (generateLoanData,interestRate,repayLumpsum1,repayLumpsum2,osLoanAmount,monthlyEMIAmount) => {
+const loanData = generateLoanData(
+    interestRate,
+    repayLumpsum1,
+    repayLumpsum2,
+    osLoanAmount,
+    monthlyEMIAmount,
+);
+
+const loanRepayYears = Math.floor(loanData.at(-1).year_frac);
+
+const loanRepayMonths = Math.round((loanData.at(-1).year_frac % 1) * 12);
+return {loanData,loanRepayYears,loanRepayMonths};
+}});
+
+define({id: "de370ce2", mode: "inline", inputs: ["plotOSLoan","loanData","display"], body: async (plotOSLoan,loanData,display) => {
+display(await(
+plotOSLoan(loanData)
+))
+}});
+
+define({id: "89dbf41e", mode: "inline", inputs: ["plotIntAndPrincipal","loanData","display"], body: async (plotIntAndPrincipal,loanData,display) => {
+display(await(
+plotIntAndPrincipal(loanData)
+))
+}});
+
+</script>
+</head>
+<body>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:f357cf31:--></div>
+<h1 id="home-loan-amortisation" tabindex="-1"><a class="observablehq-header-anchor" href="#home-loan-amortisation">Home Loan Amortisation</a></h1>
+<hr>
+<h2 id="inputs" tabindex="-1"><a class="observablehq-header-anchor" href="#inputs">Inputs</a></h2>
+<div class="observablehq observablehq--block"><!--:c52bc4bb:--></div>
+<div class="observablehq observablehq--block"><!--:a7512867:--></div>
+<div class="observablehq observablehq--block"><!--:7f735dca:--></div>
+<p>Lumpsum re-payment after:</p>
+<div class="observablehq observablehq--block"><!--:366f7438:--></div>
+<div class="observablehq observablehq--block"><!--:97adaf5f:--></div>
+<h2 id="result" tabindex="-1"><a class="observablehq-header-anchor" href="#result">Result</a></h2>
+<div class="observablehq observablehq--block"><!--:8b53af29:--></div>
+<div class="observablehq observablehq--block"><!--:ef84c339:--></div>
+<div class="grid grid-cols-2">
+    <div><observablehq-loading></observablehq-loading><!--:de370ce2:--></div>
+    <div><observablehq-loading></observablehq-loading><!--:89dbf41e:--></div>
+</div>
+</main>
+</div>
+</body>
+</html>
