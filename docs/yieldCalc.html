@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>ROI Calculation | Investment Dashboard</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_import/styles.2c55db2d.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_import/styles.2c55db2d.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.52168a14.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_import/incurredCashflows.559fdfb5.js">
+<link rel="modulepreload" href="./_import/projectedCashflows.3671073a.js">
+<link rel="modulepreload" href="./_import/utils.0db413bc.js">
+<link rel="modulepreload" href="./_node/node-irr@2.0.5/index.fb1b8af4.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.31cd1366.js">
+<link rel="modulepreload" href="./_node/d3@7.9.0/index.ca4e4e1f.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_node/d3-array@3.2.4/index.bdb0a72c.js">
+<link rel="modulepreload" href="./_node/d3-axis@3.0.0/index.34ded868.js">
+<link rel="modulepreload" href="./_node/d3-brush@3.0.0/index.2a46d490.js">
+<link rel="modulepreload" href="./_node/d3-chord@3.0.1/index.eb7a3f59.js">
+<link rel="modulepreload" href="./_node/d3-color@3.1.0/index.e8c126ff.js">
+<link rel="modulepreload" href="./_node/d3-contour@4.0.2/index.d20458c0.js">
+<link rel="modulepreload" href="./_node/d3-delaunay@6.0.4/index.d22bdd7b.js">
+<link rel="modulepreload" href="./_node/d3-dispatch@3.0.1/index.be49ca5f.js">
+<link rel="modulepreload" href="./_node/d3-drag@3.0.0/index.d3ae5f0f.js">
+<link rel="modulepreload" href="./_node/d3-dsv@3.0.1/index.48418e2e.js">
+<link rel="modulepreload" href="./_node/d3-ease@3.0.1/index.f721fe69.js">
+<link rel="modulepreload" href="./_node/d3-fetch@3.0.1/index.a14b8fa2.js">
+<link rel="modulepreload" href="./_node/d3-force@3.0.0/index.952bd793.js">
+<link rel="modulepreload" href="./_node/d3-format@3.1.2/index.462d0a06.js">
+<link rel="modulepreload" href="./_node/d3-geo@3.1.1/index.ed340730.js">
+<link rel="modulepreload" href="./_node/d3-hierarchy@3.1.2/index.aa2fa671.js">
+<link rel="modulepreload" href="./_node/d3-interpolate@3.0.1/index.e11d2315.js">
+<link rel="modulepreload" href="./_node/d3-path@3.1.0/index.c2b3c473.js">
+<link rel="modulepreload" href="./_node/d3-polygon@3.0.1/index.32c3d834.js">
+<link rel="modulepreload" href="./_node/d3-quadtree@3.0.1/index.e9fed2eb.js">
+<link rel="modulepreload" href="./_node/d3-random@3.0.1/index.0f51cac2.js">
+<link rel="modulepreload" href="./_node/d3-scale@4.0.2/index.d84d3d65.js">
+<link rel="modulepreload" href="./_node/d3-scale-chromatic@3.1.0/index.28c209c1.js">
+<link rel="modulepreload" href="./_node/d3-selection@3.0.0/index.13204b25.js">
+<link rel="modulepreload" href="./_node/d3-shape@3.2.0/index.d124f030.js">
+<link rel="modulepreload" href="./_node/d3-time@3.1.0/index.5e76e4f2.js">
+<link rel="modulepreload" href="./_node/d3-time-format@4.1.0/index.1cef6c56.js">
+<link rel="modulepreload" href="./_node/d3-timer@3.0.1/index.0ee6092b.js">
+<link rel="modulepreload" href="./_node/d3-transition@3.0.1/index.3725eff8.js">
+<link rel="modulepreload" href="./_node/d3-zoom@3.0.0/index.b6a6a5f8.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_node/internmap@2.0.3/index.4106013c.js">
+<link rel="modulepreload" href="./_node/delaunator@5.1.0/index.612904e6.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+<link rel="modulepreload" href="./_node/robust-predicates@3.0.3/index.a9a3e887.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.52168a14.js";
+import {registerFile} from "./_observablehq/stdlib.277aeab8.js";
+
+registerFile("./data/sbi_int_only_and_adhoc.csv", {"name":"./data/sbi_int_only_and_adhoc.csv","mimeType":"text/csv","path":"./_file/data/sbi_int_only_and_adhoc.f1fa2720.csv","lastModified":1777645738880,"size":358});
+
+define({id: "854880ba", inputs: ["FileAttachment"], outputs: ["cashflowsSbiIntAndAdhoc"], body: async (FileAttachment) => {
+const cashflowsSbiIntAndAdhoc = await FileAttachment(
+  "./data/sbi_int_only_and_adhoc.csv",
+).csv({ typed: true });
+return {cashflowsSbiIntAndAdhoc};
+}});
+
+define({id: "1d27143c", inputs: ["view","Inputs"], outputs: ["osLoan"], body: (view,Inputs) => {
+const osLoan = view(
+  Inputs.number({
+    label: "O/S Loan (as at May 2026)",
+    value: 10_30_000,
+    disabled: true,
+    width: 125,
+  }),
+);
+return {osLoan};
+}});
+
+define({id: "0c5ca0c9", inputs: ["view","Inputs"], outputs: ["monthlyEMIAmount"], body: (view,Inputs) => {
+const monthlyEMIAmount = view(
+  Inputs.number({
+    label: "Monthly EMI amount",
+    value: 14_041,
+    disabled: true,
+    width: 125,
+  }),
+);
+return {monthlyEMIAmount};
+}});
+
+define({id: "28464a33", inputs: ["view","Inputs"], outputs: ["interestRate"], body: (view,Inputs) => {
+const interestRate = view(
+  Inputs.range([0.08, 0.15], {
+    step: 0.001,
+    value: 0.091,
+    label: "Interest Rate",
+  }),
+);
+return {interestRate};
+}});
+
+define({id: "5e3782bd", inputs: ["view","Inputs","html"], outputs: ["lumpsumRepay"], body: (view,Inputs,html) => {
+const lumpsumRepay = view(
+  Inputs.range([0, 7_00_000], {
+    step: 50_000,
+    value: 5_00_000,
+    label: html`<span>Lumpsum repayment<br />(after 1-year)</span>`,
+  }),
+);
+return {lumpsumRepay};
+}});
+
+define({id: "74b9e3ab", inputs: ["view","Inputs"], outputs: ["saleValue"], body: (view,Inputs) => {
+const saleValue = view(
+  Inputs.range([1_00_00_000, 2_50_00_000], {
+    step: 10_00_000,
+    value: 1_50_00_000,
+    label: "Expected sale value",
+    width: 300,
+  }),
+);
+return {saleValue};
+}});
+
+define({id: "70447f22", mode: "inline", inputs: ["currencyFormat","totalInflow","totalOutflow","display"], body: async (currencyFormat,totalInflow,totalOutflow,display) => {
+display(await(
+currencyFormat(totalInflow + totalOutflow)
+))
+}});
+
+define({id: "203d41a3", mode: "inline", inputs: ["d3","convertRate","rate","display"], body: async (d3,convertRate,rate,display) => {
+display(await(
+d3.format(".2%")(convertRate(rate, "year"))
+))
+}});
+
+define({id: "1fce8b97", mode: "inline", inputs: ["currencyFormatAxis","totalIncurredOutflow","display"], body: async (currencyFormatAxis,totalIncurredOutflow,display) => {
+display(await(
+currencyFormatAxis(totalIncurredOutflow)
+))
+}});
+
+define({id: "d33e3caa", mode: "inline", inputs: ["currencyFormatAxis","totalProjectedOutflow","display"], body: async (currencyFormatAxis,totalProjectedOutflow,display) => {
+display(await(
+currencyFormatAxis(totalProjectedOutflow)
+))
+}});
+
+define({id: "a336fbc7", mode: "inline", inputs: ["currencyFormatAxis","totalOutflow","display"], body: async (currencyFormatAxis,totalOutflow,display) => {
+display(await(
+currencyFormatAxis(totalOutflow)
+))
+}});
+
+define({id: "785bf543", mode: "inline", inputs: ["currencyFormatAxis","totalIncurredInflow","display"], body: async (currencyFormatAxis,totalIncurredInflow,display) => {
+display(await(
+currencyFormatAxis(totalIncurredInflow)
+))
+}});
+
+define({id: "57a91a7f", mode: "inline", inputs: ["currencyFormatAxis","totalProjectedInflow","display"], body: async (currencyFormatAxis,totalProjectedInflow,display) => {
+display(await(
+currencyFormatAxis(totalProjectedInflow)
+))
+}});
+
+define({id: "3ea49fcd", mode: "inline", inputs: ["currencyFormatAxis","totalInflow","display"], body: async (currencyFormatAxis,totalInflow,display) => {
+display(await(
+currencyFormatAxis(totalInflow)
+))
+}});
+
+define({id: "c7140ba8", mode: "inline", inputs: ["currencyFormatAxis","totalInflow","totalOutflow","display"], body: async (currencyFormatAxis,totalInflow,totalOutflow,display) => {
+display(await(
+currencyFormatAxis(totalInflow + totalOutflow)
+))
+}});
+
+define({id: "700356b4", inputs: ["projectedCashflowsFn","osLoan","monthlyEMIAmount","interestRate","lumpsumRepay","saleValue"], outputs: ["projectedEMI","projectedRent","projectedLumpsumRepay","projectedLoanRepay","projectedSale"], body: (projectedCashflowsFn,osLoan,monthlyEMIAmount,interestRate,lumpsumRepay,saleValue) => {
+const {
+  projectedEMI,
+  projectedRent,
+  projectedLumpsumRepay,
+  projectedLoanRepay,
+  projectedSale,
+} = projectedCashflowsFn(
+  osLoan,
+  monthlyEMIAmount,
+  interestRate,
+  lumpsumRepay,
+  saleValue,
+);
+return {projectedEMI,projectedRent,projectedLumpsumRepay,projectedLoanRepay,projectedSale};
+}});
+
+define({id: "bcea93b4", inputs: ["consolidateCashflows","cashflowsHsbcLoan","cashflowsOwnPayments","cashflowsSbiEMIOrig","cashflowsSbiEMIRevised","cashflowsSbiIntAndAdhoc","cashflowsRent","projectedEMI","projectedRent","projectedSale","projectedLoanRepay","d3"], outputs: ["incurredCashflows","projectedCashflows","totalIncurredOutflow","totalProjectedOutflow","totalIncurredInflow","totalProjectedInflow","totalOutflow","totalInflow"], body: (consolidateCashflows,cashflowsHsbcLoan,cashflowsOwnPayments,cashflowsSbiEMIOrig,cashflowsSbiEMIRevised,cashflowsSbiIntAndAdhoc,cashflowsRent,projectedEMI,projectedRent,projectedSale,projectedLoanRepay,d3) => {
+const incurredCashflows = consolidateCashflows(
+  cashflowsHsbcLoan,
+  cashflowsOwnPayments,
+  cashflowsSbiEMIOrig,
+  cashflowsSbiEMIRevised,
+  cashflowsSbiIntAndAdhoc,
+  cashflowsRent,
+);
+
+const projectedCashflows = consolidateCashflows(
+  projectedEMI,
+  projectedRent,
+  projectedSale,
+  projectedLoanRepay,
+);
+
+const totalIncurredOutflow = d3.sum(
+  d3.filter(incurredCashflows, (d) => d.amount < 0),
+  (d) => d.amount,
+);
+
+const totalProjectedOutflow = d3.sum(
+  d3.filter(projectedCashflows, (d) => d.amount < 0),
+  (d) => d.amount,
+);
+
+const totalIncurredInflow = d3.sum(
+  d3.filter(incurredCashflows, (d) => d.amount > 0),
+  (d) => d.amount,
+);
+
+const totalProjectedInflow = d3.sum(
+  d3.filter(projectedCashflows, (d) => d.amount > 0),
+  (d) => d.amount,
+);
+
+const totalOutflow = totalIncurredOutflow + totalProjectedOutflow;
+const totalInflow = totalIncurredInflow + totalProjectedInflow;
+return {incurredCashflows,projectedCashflows,totalIncurredOutflow,totalProjectedOutflow,totalIncurredInflow,totalProjectedInflow,totalOutflow,totalInflow};
+}});
+
+define({id: "947a1879", inputs: ["xirr","incurredCashflows","projectedCashflows"], outputs: ["days","rate"], body: (xirr,incurredCashflows,projectedCashflows) => {
+const { days, rate } = xirr([incurredCashflows, projectedCashflows].flat());
+return {days,rate};
+}});
+
+define({id: "7b7ff531", outputs: ["cashflowsHsbcLoan","cashflowsOwnPayments","cashflowsSbiEMIOrig","cashflowsSbiEMIRevised","cashflowsRent","projectedCashflowsFn","consolidateCashflows","currencyFormat","currencyFormatAxis","irrModule","xirr","convertRate"], body: async () => {
+const [{cashflowsHsbcLoan, cashflowsOwnPayments, cashflowsSbiEMIOrig, cashflowsSbiEMIRevised, cashflowsRent}, {projectedCashflowsFn}, {consolidateCashflows, currencyFormat, currencyFormatAxis}, {default: irrModule}] = await Promise.all([import("./_import/incurredCashflows.559fdfb5.js"), import("./_import/projectedCashflows.3671073a.js"), import("./_import/utils.0db413bc.js"), import("./_node/node-irr@2.0.5/index.fb1b8af4.js")]);
+
+
+
+const { xirr, convertRate } = irrModule;
+return {cashflowsHsbcLoan,cashflowsOwnPayments,cashflowsSbiEMIOrig,cashflowsSbiEMIRevised,cashflowsRent,projectedCashflowsFn,consolidateCashflows,currencyFormat,currencyFormatAxis,irrModule,xirr,convertRate};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Investment Dashboard</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./yieldCalc">ROI Calculation</a></li>
+    <li class="observablehq-link"><a href="./amortisationCalc">Home Loan Amortisation</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="roi-calculation" tabindex="-1"><a class="observablehq-header-anchor" href="#roi-calculation">ROI Calculation</a></h1>
+<p>Based on incurred cashflows till May 2026 and projections beyond that.</p>
+<div class="observablehq observablehq--block"><!--:854880ba:--></div>
+<h2 id="projection-assumptions" tabindex="-1"><a class="observablehq-header-anchor" href="#projection-assumptions">Projection Assumptions</a></h2>
+<p>The projection assumes that the property will be sold in three years' time, i.e., by December 2029.</p>
+<div class="observablehq observablehq--block"><!--:1d27143c:--></div>
+<div class="observablehq observablehq--block"><!--:0c5ca0c9:--></div>
+<div class="observablehq observablehq--block"><!--:28464a33:--></div>
+<div class="observablehq observablehq--block"><!--:5e3782bd:--></div>
+<div class="observablehq observablehq--block"><!--:74b9e3ab:--></div>
+<h2 id="result" tabindex="-1"><a class="observablehq-header-anchor" href="#result">Result</a></h2>
+<div class="grid grid-cols-3">
+  <div class="card result-box">
+    <span>
+      <h1 style="font-size: 1.1rem">Total Profit</h1>
+      <h2 style="font-size: 0.9rem; color: #888; margin-bottom: 0px"><i>Undiscounted</i></h2>
+    </span>
+    <span class="result-value">
+      <observablehq-loading></observablehq-loading><!--:70447f22:-->
+    </span>
+  </div>
+  <div class="card result-box">
+    <span>
+      <h1 style="font-size: 1.1rem">Net Yield</h1>
+      <h2 style="font-size: 0.9rem; color: #888; margin-bottom: 0px"><i>Per Annum</i></h2>
+    </span>
+    <span class="result-value">
+      <observablehq-loading></observablehq-loading><!--:203d41a3:-->
+    </span>
+  </div>
+</div>
+<h3 id="cashflow-summary" tabindex="-1"><a class="observablehq-header-anchor" href="#cashflow-summary">Cashflow Summary</a></h3>
+<table class="cashflow-summary-table">
+    <thead>
+      <tr class="table-header">
+        <th style="background: white"></th>
+        <th>Incurred</th>
+        <th>Projected</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Outflow</td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:1fce8b97:--></td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:d33e3caa:--></td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:a336fbc7:--></td>
+      </tr>
+      <tr>
+        <td class="label">Inflow</td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:785bf543:--></td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:57a91a7f:--></td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:3ea49fcd:--></td>
+      </tr>
+      <tr class="last-row">
+        <td class="label">Net</td>
+        <td></td>
+        <td></td>
+        <td class="number"><observablehq-loading></observablehq-loading><!--:c7140ba8:--></td>
+      </tr>
+    </tbody>
+</table>
+<div class="observablehq observablehq--block"><!--:700356b4:--></div>
+<div class="observablehq observablehq--block"><!--:bcea93b4:--></div>
+<div class="observablehq observablehq--block"><!--:947a1879:--></div>
+<div class="observablehq observablehq--block"><!--:7b7ff531:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>Investment Dashboard</span></a><a rel="next" href="./amortisationCalc"><span>Home Loan Amortisation</span></a></nav>
+</footer>
+</div>
+</body>
+</html>
