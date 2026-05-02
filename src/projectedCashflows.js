@@ -1,27 +1,72 @@
-import { generateMonthlyCashflows } from "./utils.js";
+const projStartDate = new Date("2026-05-01");
+const projRepayDate = new Date("2027-05-01");
+const projLength = 36; // 3 years
 
-const projectedEMI = generateMonthlyCashflows({
-  amount: 14_100,
-  startDate: new Date("2026-06-01"),
-  endDate: new Date("2029-05-01"),
-});
+const projSaleDate = new Date(projStartDate);
+projSaleDate.setMonth(projStartDate.getMonth() + projLength);
 
-const projectedRent = generateMonthlyCashflows({
-  amount: 20_000,
-  startDate: new Date("2026-05-01"),
-  endDate: new Date("2029-05-01"),
-  multiplier: 1,
-});
+function projectedCashflowsFn(
+  osLoan,
+  monthlyEMIAmount,
+  interestRate,
+  lumpsumRepay,
+  saleValue,
+) {
+  const monthlyRate = (1 + interestRate) ** (1 / 12) - 1;
 
-const projectedSale = {
-  amount: 2_00_00_000,
-  date: new Date("2029-12-01"),
-  multiplier: 1,
-};
+  let projOSLoan = osLoan; // projected outstanding loan
+  let projDate = new Date(projStartDate);
 
-const projectedLoanRepay = {
-  amount: 8_00_000,
-  date: new Date("2029-05-01"),
-};
+  let projectedEMI = [],
+    projectedRent = [{ date: projStartDate, amount: 20_000, multiplier: 1 }];
 
-export { projectedEMI, projectedRent, projectedSale, projectedLoanRepay };
+  for (let t = 1; projOSLoan > 0 && t <= projLength; t++) {
+    projDate.setMonth(projDate.getMonth() + 1);
+
+    projOSLoan = Math.max(
+      projOSLoan * (1 + monthlyRate) -
+        monthlyEMIAmount -
+        lumpsumRepay * (+projDate === +projRepayDate),
+      0,
+    );
+
+    console.log({ projOSLoan, t });
+
+    projectedEMI.push({
+      date: projDate,
+      amount: monthlyEMIAmount,
+    });
+
+    projectedRent.push({
+      date: projDate,
+      amount: 20_000,
+      multiplier: 1,
+    });
+  }
+
+  const projectedLumpsumRepay = {
+    date: projRepayDate,
+    amount: lumpsumRepay,
+  };
+
+  const projectedLoanRepay = {
+    date: projDate,
+    amount: projOSLoan,
+  };
+
+  const projectedSale = {
+    date: projSaleDate,
+    amount: saleValue,
+    multiplier: 1,
+  };
+
+  return {
+    projectedEMI,
+    projectedRent,
+    projectedLumpsumRepay,
+    projectedLoanRepay,
+    projectedSale,
+  };
+}
+
+export { projectedCashflowsFn };

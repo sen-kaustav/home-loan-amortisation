@@ -3,34 +3,74 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 :root {
-    --serif: "Inter", serif;
-    --monospace: "JetBrains Mono", monospace;
-    ---plot-bg-color: #b4b4b4;
+  --serif: "Inter", serif;
+  --monospace: "JetBrains Mono", monospace;
+  --plot-bg-color: #b4b4b4;
 }
 
 label {
-    --label-width: 150px;
+  --label-width: 160px;
 }
 
 .result {
-    padding: 5px 10px;
-    background-color: rgba(0, 139, 139, 0.1);
-    border-left: 3px solid darkcyan;
+  padding: 5px 10px;
+  background-color: rgba(0, 139, 139, 0.1);
+  border-left: 3px solid darkcyan;
 }
 
 .date {
-    font-weight: 600;
-    color: darkcyan;
-    padding-bottom: 1px;
-    border-bottom: 2px solid darkcyan;
+  font-weight: 600;
+  color: darkcyan;
+  padding-bottom: 1px;
+  border-bottom: 2px solid darkcyan;
 }
 
 figure {
-    background-color: rgba(180, 180, 180, 0.1);
-    background-color: rgb(from var(---plot-bg-color) r g b / 0.1);
-    border: 1px solid var(---plot-bg-color);
-    padding: 15px;
-    & h2 {
-        color: var(--theme-foreground-faint);
-    }
+  background-color: rgba(180, 180, 180, 0.1);
+  background-color: rgb(from var(--plot-bg-color) r g b / 0.1);
+  border: 1px solid var(--plot-bg-color);
+  padding: 15px;
+  & h2 {
+    color: var(--theme-foreground-faint);
+  }
+}
+
+.result-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+span.result-value {
+  font-family: var(--monospace);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: darkcyan;
+}
+
+.cashflow-summary-table {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+.table-header th {
+  background-color: rgb(from var(--theme-foreground-faintest) r g b / 0.5);
+  text-align: right;
+  padding: 3px 10px;
+}
+
+td.number {
+  font-family: var(--monospace);
+  text-align: right;
+  padding: 3px 10px;
+}
+
+td {
+  padding: 3px 10px;
+}
+
+tr.last-row {
+  border-bottom: 2px solid var(--theme-foreground-faintest);
+  font-weight: bold;
 }
