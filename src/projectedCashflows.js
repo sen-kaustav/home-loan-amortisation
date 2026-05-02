@@ -20,7 +20,7 @@ const projectedSale = {
 };
 
 const projectedLoanRepay = {
-  amount: 7_80_000,
+  amount: 8_00_000,
   date: new Date("2029-05-01"),
 };
 

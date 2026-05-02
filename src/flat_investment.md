@@ -33,38 +33,34 @@ const projectedCashflows = consolidateCashflows(
   projectedLoanRepay,
 );
 
-const totalIncurredOutflow = Math.abs(
-  d3.sum(
-    d3.filter(incurredCashflows, (d) => d.amount * d.multiplier < 0),
-    (d) => d.amount * d.multiplier,
-  ),
+const totalIncurredOutflow = d3.sum(
+  d3.filter(incurredCashflows, (d) => d.amount < 0),
+  (d) => d.amount,
 );
 
-const totalProjectedOutflow = Math.abs(
-  d3.sum(
-    d3.filter(projectedCashflows, (d) => d.amount * d.multiplier < 0),
-    (d) => d.amount * d.multiplier,
-  ),
+const totalProjectedOutflow = d3.sum(
+  d3.filter(projectedCashflows, (d) => d.amount < 0),
+  (d) => d.amount,
 );
 
 const totalIncurredInflow = d3.sum(
-  d3.filter(incurredCashflows, (d) => d.amount * d.multiplier > 0),
-  (d) => d.amount * d.multiplier,
+  d3.filter(incurredCashflows, (d) => d.amount > 0),
+  (d) => d.amount,
 );
 
 const totalProjectedInflow = d3.sum(
-  d3.filter(projectedCashflows, (d) => d.amount * d.multiplier > 0),
-  (d) => d.amount * d.multiplier,
+  d3.filter(projectedCashflows, (d) => d.amount > 0),
+  (d) => d.amount,
 );
 
 const totalOutflow = totalIncurredOutflow + totalProjectedOutflow;
 const totalInflow = totalIncurredInflow + totalProjectedInflow;
+```
 
-html`
-  <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
+<table style="border-collapse: collapse; margin: 10px 0; font-family: var(--monospace)">
     <thead>
       <tr style="background-color: #f0f0f0;">
-        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"></th>
+        <th style="background-color: white;"></th>
         <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Incurred</th>
         <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Projected</th>
         <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Total</th>
@@ -73,20 +69,24 @@ html`
     <tbody>
       <tr>
         <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Outflow</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(-totalIncurredOutflow)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(-totalProjectedOutflow)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(-totalOutflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalIncurredOutflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalProjectedOutflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalOutflow)}</td>
       </tr>
-      <tr style="background-color: #f9f9f9;">
+      <tr>
         <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Inflow</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(totalIncurredInflow)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(totalProjectedInflow)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormat(totalInflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalIncurredInflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalProjectedInflow)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${currencyFormatAxis(totalInflow)}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Net</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background-color: #eee"></td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background-color: #eee"></td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right; font-weight: bold">${currencyFormatAxis(totalInflow + totalOutflow)}</td>
       </tr>
     </tbody>
   </table>
-`;
-```
 
 All cashflows:
 
@@ -109,15 +109,11 @@ const cashflows = consolidateCashflows(
 display(cashflows);
 ```
 
-```js
-display(d3.sum(cashflows, (d) => d.amount));
-```
-
 IRR calculation
 
 ```js
-const XIRR = xirr(cashflows);
-display(XIRR);
+const { days, rate } = xirr(cashflows);
+display(convertRate(rate, "year"));
 ```
 
 ```js
@@ -136,7 +132,7 @@ import {
   projectedLoanRepay,
 } from "./projectedCashflows.js";
 
-import { consolidateCashflows, currencyFormat } from "./utils.js";
+import { consolidateCashflows, currencyFormatAxis } from "./utils.js";
 
 import irrModule from "node-irr";
 const { xirr, convertRate } = irrModule;

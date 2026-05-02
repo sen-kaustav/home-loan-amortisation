@@ -59,7 +59,7 @@ function consolidateCashflows(...arrays) {
       date: d.date,
       amount: d.amount * d.multiplier,
     }))
-    .sort((a, b) => b.date - a.date);
+    .sort((a, b) => a.date - b.date);
   return cashflows;
 }
 
