@@ -1,4 +1,4 @@
-# Home Loan Amortisation
+# Property Investment Dashboard
 
 This is an [Observable Framework](https://observablehq.com/framework/) app. To install the required dependencies, run:
 
@@ -16,30 +16,7 @@ Then visit <http://localhost:3000> to preview your app.
 
 For more, see <https://observablehq.com/framework/getting-started>.
 
-## Project structure
-
-A typical Framework project looks like this:
-
-```ini
-.
-├─ src
-│  ├─ generateLoanData.js      # loan projection code
-│  ├─ plotIntAndPrincipal.js   # plotting code
-│  ├─ index.md                 # the home page
-│  ├─ plotOSLoan.js            # plotting code
-│  ├─ styles.css               # custom syles
-│  └─ utils.js                 # helper functions
-├─ .gitignore
-├─ observablehq.config.js      # the app config file
-├─ package.json
-└─ README.md
-```
-
-**`src`** - This is the “source root” — where all the code lives. Pages go here. Each page is a Markdown file. Observable Framework uses [file-based routing](https://observablehq.com/framework/project-structure#routing), which means that the name of the file controls where the page is served. You can create as many pages as you like. Use folders to organize your pages.
-
-**`src/index.md`** - This is the home page for your app. You can have as many additional pages as you’d like, but you should always have a home page, too.
-
-**`observablehq.config.js`** - This is the [app configuration](https://observablehq.com/framework/config) file, such as the pages and sections in the sidebar navigation, and the app’s title.
+A live version of the dasboard can also be accessed via here: https://sen-kaustav.github.io/home-loan-amortisation/
 
 ## Command reference
 
